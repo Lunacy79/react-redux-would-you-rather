@@ -10,7 +10,14 @@ class Home extends Component {
         <ul className='questionlist'>
           {this.props.questionsIds.map((id) => (
             <li key={id}>
-              <Question id={id} />
+              <div className='question-options'>
+                    <div className='option'>
+                      <p>{this.props.questions[id].optionOne.text}</p>
+                    </div>
+                    <div className='option'>
+                      <p>{this.props.questions[id].optionTwo.text}</p>
+                    </div>
+                </div>
             </li>
           ))}
         </ul>
@@ -21,6 +28,7 @@ class Home extends Component {
 
 function mapStateToProps ({ questions }) {
   return {
+    questions,
     questionsIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }

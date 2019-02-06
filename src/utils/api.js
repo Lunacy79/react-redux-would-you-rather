@@ -20,5 +20,6 @@ import {
   }
   
   export function saveQuestionAnswer (object) {
+    console.log(object)
     return _saveQuestionAnswer(object)
   }

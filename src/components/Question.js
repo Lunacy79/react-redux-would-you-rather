@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import { handleSaveAnswer } from '../actions/questions'
 
 class Question extends Component {
   
@@ -56,6 +57,15 @@ class Question extends Component {
             }
         }
 
+        const choose = (option) => {
+            const { dispatch, question } = this.props
+
+            dispatch(handleSaveAnswer({
+                id: question.id,
+                answer: option
+            }))
+        }
+
 
         console.log(this.props)
         return (
@@ -70,13 +80,13 @@ class Question extends Component {
                     </div>
                 <div className='question-options'>
                     <div className='option'>
-                        <div className={getClassName1()}>
+                        <div className={getClassName1()} onClick={() => {choose('optionOne')}}>
                             <p>{optionOne}</p>
                         </div>
                         {getInfoOptionOne()}
                     </div>
                     <div className='option'>
-                        <div className={getClassName2()}>
+                        <div className={getClassName2()} onClick={() => {choose('optionTwo')}}>
                             <p>{optionTwo}</p>
                         </div>
                         {getInfoOptionTwo()}
