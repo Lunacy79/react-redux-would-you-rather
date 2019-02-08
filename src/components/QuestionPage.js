@@ -12,7 +12,11 @@ class QuestionPage extends Component {
         return (<Redirect to="/" />)
       }
       const { question } = this.props
-      console.log(question.id)
+      console.log(question)
+      if (question === undefined) {
+        console.log('redirect')
+        return <Redirect to="/error" />;
+      }
       
         return (
           <div className='question'>

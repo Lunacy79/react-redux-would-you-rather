@@ -17,8 +17,16 @@ class Login extends Component {
 
   render() {
     
-    if (this.state.loginComplete) {
-      return (<Redirect to="/home" />)
+    
+
+    const { location } = this.props;
+    const lastLocation = location.state;
+    console.log(this.props);
+
+    if (this.state.loginComplete && lastLocation) {
+      return <Redirect to={lastLocation} />;
+    } else if (this.state.loginComplete) {
+      return <Redirect to="/home" />;
     }
 
     const loginUser = () => {
