@@ -39,6 +39,7 @@ export function handleSaveAnswer (object) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
     console.log(authedUser)
+    console.log(object)
     dispatch(showLoading())
 
     return saveQuestionAnswer({
@@ -46,7 +47,12 @@ export function handleSaveAnswer (object) {
       qid: object.id,
       answer: object.answer
     })
-      .then((object) => dispatch(saveAnswer(object)))
+      .then(() => (
+        dispatch(saveAnswer({
+          authedUser,
+          qid: object.id,
+          answer: object.answer
+        }))))
       .then(() => dispatch(hideLoading()))
   }
 }

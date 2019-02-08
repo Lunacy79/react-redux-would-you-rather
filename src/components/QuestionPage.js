@@ -1,31 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
+import { Redirect } from "react-router-dom";
 
 class QuestionPage extends Component {
   
   
+  
     render() {
+      if (this.props.authedUser === null){
+        return (<Redirect to="/" />)
+      }
+      const { question } = this.props
+      console.log(question.id)
+      
         return (
-          <div>
-            <h3 className='center'>Question</h3>
-            <ul className='questionlist'>
-              {this.props.questionsIds.map((id) => (
-                <li key={id}>
-                <Question id={id} />
-                </li>
-              ))}
-            </ul>
+          <div className='question'>
+            <h3>Question</h3>
+              <Question id={question.id} />
           </div>
         )
     }
 }
-function mapStateToProps ({ questions }) {
+function mapStateToProps ({ questions, authedUser }, props) {
+  const { id } = props.match.params
+  console.log(id)
+  const question = questions[id]
+  console.log(questions[id])
+  if(authedUser !== null){
     return {
-      questions,
-      questionsIds: Object.keys(questions)
-        .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+      question: question,
+      authedUser
     }
   }
+  else {
+    return {
+      authedUser
+    }
+  }
+}
 
 export default connect(mapStateToProps)(QuestionPage)

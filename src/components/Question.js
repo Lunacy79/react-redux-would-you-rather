@@ -42,18 +42,23 @@ class Question extends Component {
         }
 
         const getClassName1 = () => {
+            console.log(question)
             if(answer === 'optionOne'){
-                return 'option1Answered'
+                return 'option answered'
+            } else if (answer === 'optionTwo') {
+                return 'option notanswered'
             } else {
-                return 'option1'
+                return 'option'
             }
         }
 
         const getClassName2 = () => {
             if(answer === 'optionTwo'){
-                return 'option2Answered'
+                return 'option answered'
+            }  else if (answer === 'optionOne') {
+                return 'option notanswered'
             } else {
-                return 'option2'
+                return 'option'
             }
         }
 
@@ -69,27 +74,33 @@ class Question extends Component {
 
         console.log(this.props)
         return (
-            <div className='question'>
+            <div>
                 <img
                     src={avatar}
                     alt={`Avatar of ${name}`}
-                    className = 'avatar'
+                    className = 'avatarpic'
                 />
                 <div className='wyr'>
                         <h3>Would you rather...</h3>
-                    </div>
+                </div>
                 <div className='question-options'>
-                    <div className='option'>
-                        <div className={getClassName1()} onClick={() => {choose('optionOne')}}>
+                    <div className='option-container'>
+                    <div className={getClassName1()}>
+                        <div onClick={() => {!answered && choose('optionOne')}}>
                             <p>{optionOne}</p>
                         </div>
-                        {getInfoOptionOne()}
+                        
                     </div>
-                    <div className='option'>
-                        <div className={getClassName2()} onClick={() => {choose('optionTwo')}}>
+                    {getInfoOptionOne()}
+                    </div>
+                    <div className='option-container'>
+                    <div className={getClassName2()}>
+                        <div onClick={() => {!answered && choose('optionTwo')}}>
                             <p>{optionTwo}</p>
                         </div>
-                        {getInfoOptionTwo()}
+                        
+                    </div>
+                    {getInfoOptionTwo()}
                     </div>
                 </div>
             </div>

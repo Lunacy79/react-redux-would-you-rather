@@ -1,67 +1,79 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddQuestion } from '.../actions/questions'
+import { handleAddQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
     state = {
-        text: '',
+        optionOne: '',
+        optionTwo: '',
         toHome: false,
     }
 
-    handleChange = (e) => {
-        const text = e.target.value
+    handleChange1 = (e) => {
+        const optionOne = e.target.value
 
         this.setState(() => ({
-            text
+            optionOne
+        }))
+    }
+    handleChange2 = (e) => {
+        const optionTwo = e.target.value
+
+        this.setState(() => ({
+            optionTwo
         }))
     }
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { text } = this.state
+        const { optionOne, optionTwo } = this.state
 
-        const { dispatch, id } = this.props
+        const { dispatch } = this.props
 
-        dispatch(handleAddQuestion(text, id))
+        dispatch(handleAddQuestion(optionOne, optionTwo))
 
-        console.log('New Question: ', text)
+        console.log('New Question: ', optionOne, optionTwo)
 
         this.setState(() => ({
             text: '',
-            toHome: id ? false : true,
+            toHome: true,
         }))
     }
     
     render() {
-        const { text, toHome } = this.state
+        const { optionOne, optionTwo, toHome } = this.state
+        
+        if (this.props.authedUser === null){
+            return (<Redirect to="/" />)
+        }
 
         if(toHome === true) {
-            return <Redirect to='/' />
+            return <Redirect to='/home' />
         }
         
         return (
-            <div>
-                <h3 className='center'>Compose new Question</h3>
+            <div className='newquestion'>
+                <h3>Compose new Question</h3>
                 <form className='new-question' onSubmit={this.handleSubmit}>
                     <textarea
                         placeholder="Option One"
-                        value={text}
-                        onChange={this.handleChange}
+                        value={optionOne}
+                        onChange={this.handleChange1}
                         className='textarea'
                         maxLength={288}
                     />
                     <textarea
                         placeholder="Option Two"
-                        value={text}
-                        onChange={this.handleChange}
+                        value={optionTwo}
+                        onChange={this.handleChange2}
                         className='textarea'
                         maxLength={288}
                     />
                     <button
-                        className='btn'
+                        className='button'
                         type='submit'
-                        disabled={text === ''}
+                        disabled={optionTwo === '' || optionOne === ''}
                     >
                         Submit
                     </button>
@@ -71,4 +83,11 @@ class NewQuestion extends Component {
     }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps ({ authedUser }) {
+    
+    return {
+        authedUser,
+    }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

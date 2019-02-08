@@ -1,26 +1,46 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
 
-export default function Nav () {
-    return (
-        <nav className='nav'>
-            <ul>
-                <li>
-                    <NavLink to='/' exact activeClassName='active'>
-                        Home
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/new' activeClassName='active'>
-                        New Poll
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/leaderboard' activeClassName='active'>
-                        Leaderboard
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
-    )
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
+import { connect } from "react-redux";
+
+class Nav extends Component {
+    render() {
+        return (
+            <nav className='nav'>
+                <ul>
+                    <li>
+                        <NavLink to='/' exact activeClassName='active'>
+                            Logout
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/home' activeClassName='active'>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/new' activeClassName='active'>
+                            New Question
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/leaderboard' activeClassName='active'>
+                            Leaderboard
+                        </NavLink>
+                    </li>
+                    <li>
+                        {this.props.authedUser}
+                    </li>
+                </ul>
+            </nav>
+        )
+    }
 }
+
+function mapStateToProps({ authedUser }) {
+    return {
+        authedUser,
+    }
+  }
+
+  export default connect(mapStateToProps)(Nav);

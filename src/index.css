@@ -12,3 +12,185 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+tr {
+  border-bottom: 1px solid black;
+}
+
+.leaderboard, .table {
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.name {
+  width: 200px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+}
+
+.askedQuestions {
+  width: 200px;
+  text-align: center;
+}
+
+.answeredQuestions {
+  width: 200px;
+  text-align: center;
+}
+
+.nav {
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.nav li {
+  display: inline;
+  list-style-type: none;
+  margin-right: 50px;
+  
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.home {
+  margin-left: 50px;
+}
+
+.login {
+  margin-left: 50px;
+}
+
+.toggles {
+  display: flex;
+}
+
+.clicked {
+  width: 300px;
+  background: #2c517a;
+  height: 30px;
+  text-align: center;
+  color: white;
+  padding-top: 5px;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.unclicked {
+  width: 300px;
+  background: #286ebb;
+  height: 30px;
+  text-align: center;
+  color: white;
+  padding-top: 5px;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.question-options {
+  display: flex;
+  text-decoration: none;
+  border: 1px solid black;
+  margin-bottom: 30px;
+  width: 850px;
+  padding-right: 10px;
+  padding-left: 40px;
+}
+
+.option {
+  width: 400px;
+  background: #286ebb;
+  height: 70px;
+  text-align: center;
+  color: white;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.option p {
+  color: white;
+  align-self: center;
+  text-align: center;
+}
+
+.home li {
+  display: inline;
+  list-style-type: none;
+  
+}
+
+.home li p {
+  margin: 0;
+}
+
+.questionlist {
+  margin: 0;
+  padding: 0;
+}
+
+.question {
+  margin-left: 50px;
+}
+
+.avatarpic {
+  width: 80px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.answered {
+  background: #2c517a;
+  width: 400px;
+  height: 70px;
+  text-align: center;
+  color: white;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.notanswered {
+  background: #286ebb;
+  width: 400px;
+  height: 70px;
+  text-align: center;
+  color: white;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.newquestion {
+  margin-left: 50px;
+}
+
+.new-question {
+  display:flex;
+  flex-direction: column
+}
+
+.textarea {
+  margin-top: 30px;
+  width: 700px;
+}
+
+.button {
+  width: 60px;
+  margin-top: 30px;
+}

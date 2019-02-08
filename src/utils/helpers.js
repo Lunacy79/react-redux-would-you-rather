@@ -1,7 +1,7 @@
-export function formatQuestion (question, author, users, authedUser) {
-    const { id, optionOne, optionTwo, timestamp } = question
-    const { name, avatarURL } = author
-    
+export function formatQuestion (question, user, users, authedUser) {
+    const { id, optionOne, optionTwo, timestamp, author } = question
+    const { name, avatarURL } = user
+    console.log(users[authedUser].answers[id])
   
     return {
       name,
@@ -11,7 +11,7 @@ export function formatQuestion (question, author, users, authedUser) {
       optionOne: optionOne.text,
       optionTwo: optionTwo.text,
       answered: users[authedUser].answers.hasOwnProperty(id),
-      answer: users[authedUser].answers.hasOwnProperty(id) ? users[question.author].answers.id : null,
+      answer: users[authedUser].answers.hasOwnProperty(id) ? users[authedUser].answers[id] : null,
       optionOneAnsweredBy: question.optionOne.votes.length,
       optionOneAnsweredPercentage:  question.optionOne.votes.length > 0 ? question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100 : 0,
       optionTwoAnsweredBy: question.optionTwo.votes.length,
